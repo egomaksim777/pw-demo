@@ -1,0 +1,22 @@
+{
+  "name": "pw-demo",
+  "version": "1.0.0",
+  "description": "This is a Demo of Playwright + TypeScript using PageObjectModel approach",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egomaksim777/pw-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/egomaksim777/pw-demo/issues"
+  },
+  "homepage": "https://github.com/egomaksim777/pw-demo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.30"
+  }
+}
