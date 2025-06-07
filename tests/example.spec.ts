@@ -37,7 +37,47 @@ test.describe('Work with API', () => {
   test('mock API', async ({ page }) => {
     const pm = new PageManager(page);
 
-    await page.waitForResponse('*/**/api/tags');
+    const response = await page.waitForResponse('*/**/api/tags');
+
+    expect(response.status()).toBe(200);
     await expect(pm.lookAtLandingPage().sideBar).toContainText('Modified tag 1 Modified tag 2');
+  });
+
+  test('check the response structure', async ({ page }) => {
+    // const response = await page.waitForResponse('*/**/api/articles*');
+    // expect(response.status()).toBe(200);
+
+  const responseBody = await page.waitForResponse('*/**/api/articles*').then(response => response.json());
+
+  // Define the expected structure for an article object
+  const expectedArticleStructure = {
+    articles: expect.any(Array),
+    articlesCount: expect.any(Number)
+  };
+
+  expect(responseBody).toEqual(expectedArticleStructure);
+
+  // Optionally, you can also validate the structure of the first article
+  if (responseBody.articles.length > 0) {
+    const firstArticle = responseBody.articles[0];
+      const expectedArticleObjectStructure = {
+        slug: expect.any(String),
+        title: expect.any(String),
+        description: expect.any(String),
+        body: expect.any(String),
+        tagList: expect.any(Array),
+        createdAt: expect.any(String),
+        updatedAt: expect.any(String),
+        favorited: expect.any(Boolean),
+        favoritesCount: expect.any(Number),
+        author: {
+          username: expect.any(String),
+          bio: null,
+          image: expect.any(String),
+          following: expect.any(Boolean),
+        },
+      };
+      expect(firstArticle).toEqual(expectedArticleObjectStructure);
+  };
   });
 });
