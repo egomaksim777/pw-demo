@@ -11,5 +11,9 @@ export class NavigationPage {
 
   async getStartedPage() {
     await this.getStartedLink.click();
-  }
+  };
+
+  async conduitPage() {
+    await this.page.goto('https://conduit.bondaracademy.com/');
+  };
 };
