@@ -2,14 +2,14 @@ import { Locator, Page } from "@playwright/test";
 
 export class NavigationPage {
   readonly page: Page;
-  readonly someLink: Locator;
+  readonly getStartedLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.someLink = page.getByText('Some page');
+    this.getStartedLink = page.getByRole('link', { name: 'Get started' });
   };
 
-  async somePage() {
-    await this.someLink.click();
+  async getStartedPage() {
+    await this.getStartedLink.click();
   }
 };
